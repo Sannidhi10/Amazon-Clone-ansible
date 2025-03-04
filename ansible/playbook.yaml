@@ -13,7 +13,7 @@
       ansible.builtin.shell: "git clone https://github.com/RakshaShekhar07/Amazon-Clone.git"
 
     - name: Copy web content to /var/www/html
-      ansible.builtin.synchronize:
+      ansible.builtin.copy:
         src: ./Amazon-Clone/*    # The directory where your files are located locally
         dest: /var/www/html    # The target directory on the remote server
         owner: root           # Set ownership to root
