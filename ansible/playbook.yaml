@@ -9,19 +9,20 @@
         name: nginx
         state: latest
 
-    - name: Clone the Git repository to the remote server (force)
+    - name: Clone the Git repository to the remote server
       ansible.builtin.git:
         repo: 'https://github.com/RakshaShekhar07/Amazon-Clone.git'
-        dest: /var/www/html/Amazon-Clone  # Directory on the remote server
+        dest: /var/www/html/Amazon-Clone
         clone: yes
-        update: yes  # Update the repo if already cloned
-        force: yes   # Force the clone operation, even if directory exists
+        update: yes
+        force: yes
 
     - name: Copy web content to /var/www/html
       ansible.builtin.copy:
-        src: /var/www/html/Amazon-Clone/*  # The directory on the remote server
-        dest: /var/www/html                # The target directory on the remote server
+        src: /var/www/html/Amazon-Clone/*  # The source path is on the remote host
+        dest: /var/www/html                # The target path on the same remote server
         owner: root
         group: root
         mode: '0644'
         recurse: yes
+        remote_src: yes  # Use remote_src because the source is on the remote machine
