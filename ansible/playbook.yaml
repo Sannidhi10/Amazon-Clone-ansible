@@ -10,8 +10,8 @@
         state: latest
 
     - name: Copy web content to /var/www/html
-      ansible.builtin.copy:
-        src: /srv/myfiles/    # The directory where your files are located locally
+      ansible.builtin.synchronize:
+        src: ./*    # The directory where your files are located locally
         dest: /var/www/html    # The target directory on the remote server
         owner: root           # Set ownership to root
         group: root           # Set group to root
