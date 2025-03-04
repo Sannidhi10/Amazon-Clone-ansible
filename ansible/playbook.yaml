@@ -1,0 +1,14 @@
+---
+- name: Update web servers
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Ensure nginx is at the latest version
+    ansible.builtin.apt:
+      name: nginx
+      state: latest
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: ./*
+      dest: /var/www/html
