@@ -9,14 +9,19 @@
         name: nginx
         state: latest
 
-    - name: Run a shell command to update apt cache
-      ansible.builtin.shell: "git clone https://github.com/RakshaShekhar07/Amazon-Clone.git"
+    - name: Clone the Git repository to the remote server (force)
+      ansible.builtin.git:
+        repo: 'https://github.com/RakshaShekhar07/Amazon-Clone.git'
+        dest: /var/www/html/Amazon-Clone  # Directory on the remote server
+        clone: yes
+        update: yes  # Update the repo if already cloned
+        force: yes   # Force the clone operation, even if directory exists
 
     - name: Copy web content to /var/www/html
       ansible.builtin.copy:
-        src: ./Amazon-Clone/*    # The directory where your files are located locally
-        dest: /var/www/html    # The target directory on the remote server
-        owner: root           # Set ownership to root
-        group: root           # Set group to root
-        mode: '0644'          # Set permissions to -rw-r--r-- (owner can read/write, group and others can read)
-        recurse: yes          # Recursively copy all files and directories inside /srv/myfiles/
+        src: /var/www/html/Amazon-Clone/*  # The directory on the remote server
+        dest: /var/www/html                # The target directory on the remote server
+        owner: root
+        group: root
+        mode: '0644'
+        recurse: yes
