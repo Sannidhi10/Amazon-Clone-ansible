@@ -1,1 +1,1 @@
-18.142.236.247 ansible_user=ubuntu
+localhost ansible_user=ubuntu
