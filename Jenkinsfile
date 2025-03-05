@@ -9,7 +9,7 @@ pipeline {
         }
         stage('ansible-deploy') {
             steps {
-               sh 'ansible-playbook -i ./ansible/inventory ./ansible/ansible-playbook.yaml'
+               sh 'ansible-playbook -i ./ansible/inventory ./ansible/playbook.yaml'
             }
         }
     }
