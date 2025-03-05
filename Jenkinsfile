@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'ansible'
 
     stages {
         stage('git') {
@@ -9,7 +9,7 @@ pipeline {
         }
         stage('ansible-deploy') {
             steps {
-               bat 'ansible-playbook -i ./ansible/inventory ./ansible/ansible-playbook.yaml'
+               sh 'ansible-playbook -i ./ansible/inventory ./ansible/ansible-playbook.yaml'
             }
         }
     }
